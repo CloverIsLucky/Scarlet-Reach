@@ -22,7 +22,7 @@
 
 /datum/coven_power/demonic/deny_the_mother/activate()
 	. = ..()
-	ADD_TRAIT(owner, TRAIT_NOFIRE, VAMPIRE_TRAIT)
+	ADD_TRAIT(owner, TRAIT_NOFIRE, TRAIT_VAMPIRE)
 	owner.physiology.burn_mod /= 100
 	owner.color = "#884200"
 	owner.add_stress(/datum/stressevent/vampiric_nostalgia)
@@ -32,7 +32,7 @@
 /datum/coven_power/demonic/deny_the_mother/deactivate()
 	. = ..()
 	owner.color = initial(owner.color)
-	REMOVE_TRAIT(owner, TRAIT_NOFIRE, VAMPIRE_TRAIT)
+	REMOVE_TRAIT(owner, TRAIT_NOFIRE, TRAIT_VAMPIRE)
 	owner.physiology.burn_mod *= 100
 	owner.add_stress(/datum/stressevent/vampiric_reality)
 	playsound(get_turf(owner), 'sound/misc/carriage2.ogg', 40, TRUE)
