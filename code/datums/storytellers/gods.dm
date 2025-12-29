@@ -36,13 +36,21 @@
 	color_theme = "#80ced8"
 
 	//Has no influence, your actions will not impact him his spawn rates. Cus he's asleep.
-	//Tl;dr - higher event spawn rates to keep stuff interesting, no god intervention, no antags. (Raids and omens will still happen at normal rate.)
+	//Tl;dr - higher event spawn rates to keep stuff interesting, no god intervention, no antags.
 	point_gains_multipliers = list(
 		EVENT_TRACK_MUNDANE = 1.2,
 		EVENT_TRACK_MODERATE = 1.2,
-		EVENT_TRACK_INTERVENTION = 0,			//No god intervention, cus he's asleep.
-		EVENT_TRACK_CHARACTER_INJECTION = 0,	//No antagonist spawns.
+		EVENT_TRACK_INTERVENTION = -1,			//No god intervention, cus he's asleep.
+		EVENT_TRACK_CHARACTER_INJECTION = -1,	//No antagonist spawns.
+		EVENT_TRACK_RAIDS = -1,
 	)
+
+/datum/storyteller/psydon/on_vote_chosen()
+	rules_forever = TRUE
+	// Closing bandit slots
+	var/datum/job/bandit_job = SSjob.GetJob("Bandit")
+	bandit_job.total_positions = 0
+	bandit_job.spawn_positions = 0
 
 /datum/storyteller/astrata
 	name = "Astrata"
