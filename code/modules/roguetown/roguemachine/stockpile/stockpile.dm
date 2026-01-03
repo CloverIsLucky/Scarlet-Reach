@@ -156,7 +156,7 @@
 				SStreasury.economic_output += true_value
 				withdraw_tab.budget += amt
 				attack_hand(H, "withdraw")
-				say("Additional [amt] scrip added to budget.")
+				say("Additional [amt] marks awarded to budget.")
 			record_round_statistic(STATS_STOCKPILE_EXPANSES, amt) // Unlike deposit, a treasure minting is equal to both expending and profiting at the same time
 			record_round_statistic(STATS_STOCKPILE_REVENUE, true_value)
 			return

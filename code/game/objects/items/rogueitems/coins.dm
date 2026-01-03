@@ -228,7 +228,7 @@
 
 //Stockpile scrip - Worthless as actual currency
 /obj/item/roguecoin/scrip
-	name = "scrip"
+	name = "mark"
 	desc = "A worthless piece of polished wood made for peasants. Converted to mammon at a MEISTER."
 	icon_state = "p1"
 	resistance_flags = FLAMMABLE
@@ -236,7 +236,7 @@
 	stockprice = 1
 	max_stack = 50
 	base_type = CTYPE_SCRIP
-	plural_name = "scrips"
+	plural_name = "marks"
 
 //GOLD
 /obj/item/roguecoin/gold

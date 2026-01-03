@@ -17,7 +17,7 @@
 		contents += "<a href='?src=[REF(parent_structure)];navigate=directory'>(back)</a><BR>"
 
 	contents += "--------------<BR>"
-	contents += "<a href='?src=[REF(parent_structure)];change=1'>Stored Scrip: [budget]</a><BR>"
+	contents += "<a href='?src=[REF(parent_structure)];change=1'>Stored Marks: [budget]</a><BR>"
 	contents += "<a href='?src=[REF(parent_structure)];compact=1'>Compact Mode: [compact ? "ENABLED" : "DISABLED"]</a></center><BR>"
 	var/mob/living/user = usr
 	if (user && HAS_TRAIT(user, TRAIT_FOOD_STIPEND))
