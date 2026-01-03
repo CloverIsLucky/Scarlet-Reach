@@ -178,6 +178,8 @@
 			newlimit = CLAMP(newlimit, 0, 999)
 			scom_announce("The stockpile limit for [D.name] was changed to [newlimit].")
 			D.stockpile_limit = newlimit
+	if(href_list["allowscrip"])
+		SStreasury.allow_scrip = !SStreasury.allow_scrip
 	if(href_list["givemoney"])
 		var/X = locate(href_list["givemoney"])
 		if(!X)
@@ -398,6 +400,10 @@
 				contents += " / Guild's Tax: [SStreasury.queens_tax*100]%</center><BR>"
 				contents += "<center>Auto Export Stockpile Above: "
 				contents += "<a href='?src=\ref[src];changeautoexport=1'>[SStreasury.autoexport_percentage * 100]%</a></center><BR>"
+				var/scriptext = "FALSE"
+				if(SStreasury.allow_scrip)
+					scriptext = "TRUE"
+				contents += "<center>Allow Scrip Conversion:<a href='?src=\ref[src];allowscrip=1'>[scriptext]</a></center><BR>"
 				var/selection = "<center>Categories: "
 				for(var/category in categories)
 					if(category == current_category)

@@ -154,8 +154,9 @@
 				say("Stockpile is full, no payment.")
 			else if(amt)
 				SStreasury.economic_output += true_value
-				if(!SStreasury.give_money_account(amt, H, "+[amt] from [R.name] bounty") && message == TRUE)
-					say("No account found. Submit your fingers to a Meister for inspection.")
+				withdraw_tab.budget += amt
+				attack_hand(H, "withdraw")
+				say("Additional [amt] scrip added to budget.")
 			record_round_statistic(STATS_STOCKPILE_EXPANSES, amt) // Unlike deposit, a treasure minting is equal to both expending and profiting at the same time
 			record_round_statistic(STATS_STOCKPILE_REVENUE, true_value)
 			return
