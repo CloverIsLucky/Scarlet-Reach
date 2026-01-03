@@ -137,7 +137,7 @@
 	payout_price = 4
 	withdraw_price = 4
 	transport_fee = 1
-	export_price = 18
+	export_price = 4
 	importexport_amt = 10
 	stockpile_limit = 50 // Jackberries are used to mass produce raisins so higher limit
 	passive_generation = 2
