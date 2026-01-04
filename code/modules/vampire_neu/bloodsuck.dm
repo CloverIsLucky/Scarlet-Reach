@@ -121,6 +121,7 @@
 				if(choice == "MAKE IT SO" && istype(VDrinker) && Adjacent(victim))
 					to_chat(src, span_userdanger("The die is cast. The final droplet. This one shall perish."))
 					victim.emote("agony", forced = TRUE)
+					VDrinker.research_points += RP_PER_CC_MURDER
 					to_chat(victim, span_userdanger("The last droplet of vitae is squeezed out of your body. Your heart is freed from the crimson curse. It makes its first and last beat. Thus ends your story."))
 					victim.dust(just_ash = TRUE, drop_items = TRUE, force = TRUE)
 			else
