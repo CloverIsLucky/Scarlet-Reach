@@ -128,6 +128,7 @@
 					var/amt = R.withdraw_price * B.amount
 					SStreasury.economic_output += R.export_price * B.amount
 					withdraw_tab.budget += amt
+					withdraw_tab.scrip_budget += amt
 					attack_hand(H, "withdraw")
 					say("Additional [amt] marks awarded to budget.")
 
@@ -165,6 +166,7 @@
 			else if(amt)
 				SStreasury.economic_output += true_value
 				withdraw_tab.budget += amt
+				withdraw_tab.scrip_budget += amt
 				attack_hand(H, "withdraw")
 				say("Additional [amt] marks awarded to budget.")
 			record_round_statistic(STATS_STOCKPILE_EXPANSES, amt) // Unlike deposit, a treasure minting is equal to both expending and profiting at the same time

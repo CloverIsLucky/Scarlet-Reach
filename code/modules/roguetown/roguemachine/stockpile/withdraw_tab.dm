@@ -1,6 +1,8 @@
 /datum/withdraw_tab
 	var/stockpile_index = -1
 	var/budget = 0
+	var/scrip_budget = 0
+	var/mammon_budget = 0
 	var/compact = TRUE
 	var/current_category = "Raw Materials"
 	var/list/categories = list("Raw Materials", "Foodstuffs", "Fruits")
@@ -17,7 +19,7 @@
 		contents += "<a href='?src=[REF(parent_structure)];navigate=directory'>(back)</a><BR>"
 
 	contents += "--------------<BR>"
-	contents += "<a href='?src=[REF(parent_structure)];change=1'>Stored Marks: [budget]</a><BR>"
+	contents += "<a href='?src=[REF(parent_structure)];change=1'>Stored Mammon: [mammon_budget]</a> / <a href='?src=[REF(parent_structure)];scrip_change=1'>Stored Marks: [scrip_budget]</a><BR>"
 	contents += "<a href='?src=[REF(parent_structure)];compact=1'>Compact Mode: [compact ? "ENABLED" : "DISABLED"]</a></center><BR>"
 	var/mob/living/user = usr
 	if (user && HAS_TRAIT(user, TRAIT_FOOD_STIPEND))
@@ -96,6 +98,14 @@
 		else
 			D.held_items[source_stockpile]--
 			budget -= total_price
+			var/mammon_price = scrip_budget - total_price
+			scrip_budget = max((scrip_budget - total_price), 0)
+			if(mammon_price < 0)
+				var/real_price = abs(mammon_price)
+				mammon_budget -= real_price
+				SStreasury.economic_output -= D.export_price // Prevent GDP double counting
+				SStreasury.give_money_treasury(real_price, "stockpile withdraw")
+				record_round_statistic(STATS_STOCKPILE_REVENUE, real_price)
 			var/obj/item/I = new D.item_type(parent_structure.loc)
 			I.from_stockpile = TRUE
 			var/mob/user = usr
@@ -113,9 +123,18 @@
 		if(!usr.canUseTopic(parent_structure, BE_CLOSE))
 			return FALSE
 		if(ishuman(usr))
-			if(budget > 0)
+			if(mammon_budget > 0)
+				parent_structure.budget2change(budget, usr)
+				budget -= mammon_budget
+				mammon_budget = 0
+	if(href_list["scrip_change"])
+		if(!usr.canUseTopic(parent_structure, BE_CLOSE))
+			return FALSE
+		if(ishuman(usr))
+			if(scrip_budget > 0)
 				parent_structure.budget2change(budget, usr, "SCRIP")
-				budget = 0
+				budget -= scrip_budget
+				scrip_budget = 0
 	if(href_list["changecat"])
 		if(!usr.canUseTopic(parent_structure, BE_CLOSE))
 			return FALSE
@@ -124,12 +143,12 @@
 
 /datum/withdraw_tab/proc/insert_coins(obj/item/roguecoin/C)
 	if(C.stockprice)
+		scrip_budget += C.stockprice * C.quantity
 		budget += C.stockprice * C.quantity
 	else
 		var/real_price = C.get_real_price()
+		mammon_budget += real_price
 		budget += real_price
-		SStreasury.give_money_treasury(real_price, "stockpile deposit")
-		record_round_statistic(STATS_STOCKPILE_REVENUE, real_price)
 	qdel(C)
 	parent_structure.update_icon()
 	playsound(parent_structure.loc, 'sound/misc/coininsert.ogg', 100, TRUE, -1)
