@@ -207,15 +207,6 @@
 		var/dx = tracked ? 0 : source.x - T.x
 		var/dy = tracked ? 0 : source.y - T.y
 		
-		// Applies nearfield attenuation to prevent sounds
-		// from being too loud when played from a distance of 0
-		// Only necessary because old sound positioning code 
-		// kept a minimum delta of 1 for all sounds played
-
-		if(distance < 1)
-			var/nearfield_factor = 1/sqrt(2)
-			S.volume = round(S.volume * nearfield_factor)
-
 		// Use a turf on the same zlevel as the client eye
 		// so the sound can be tracked by the client correctly. We will then apply
 		// z-distance attenuation on the client side via the projection matrix
@@ -231,8 +222,8 @@
 
 		// OFFSET COMPENSATION using projection matrices
 		if(!override)
-			var/ex = client.pixel_x ? (client.pixel_x / world.icon_size) : 0
-			var/ey = client.pixel_y ? (client.pixel_y / world.icon_size) : 0
+			var/ex = client.pixel_x != 0 ? (client.pixel_x / world.icon_size) : 0
+			var/ey = client.pixel_y != 0 ? (client.pixel_y / world.icon_size) : 0
 
 			var/xx = 1
 			var/xy = 0
