@@ -255,9 +255,11 @@
 				var/sound/DS = client.played_loops[D]["SOUND"]
 				if(DS)
 					var/volly = client.played_loops[D]["VOL"]
-					if(volly != S.volume)
+					if(volly != S.volume || S.transform)
 						if(S.transform)
 							DS.transform = S.transform
+						if(S.atom)
+							DS.atom = S.atom
 						DS.falloff = S.falloff
 						client.played_loops[D]["VOL"] = S.volume
 						update_sound_volume(DS, S.volume)
