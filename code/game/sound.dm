@@ -15,9 +15,11 @@
 		CRASH("playsound(): source is an area")
 
 	var/soundfile = soundin
+	var/input_frequency = null
 	if(istype(soundin, /sound))
 		var/sound/sound = soundin
 		soundfile = sound.file
+		input_frequency = sound.frequency
 	// Voice over sound, which implies it should come from the head.
 	if(isdullahan(source) && findtext("[soundfile]", @"sound/vo"))
 		var/mob/living/carbon/human/human = source
@@ -34,7 +36,11 @@
 	// Get same sound for everyone
 	soundin = get_sfx(soundin)
 	// Same frequency for everybody
-	frequency = vary && isnull(frequency) ? get_rand_frequency() : frequency
+	// Preserve frequency from input sound object if it was set
+	if(isnull(frequency) && !isnull(input_frequency))
+		frequency = input_frequency
+	else
+		frequency = vary && isnull(frequency) ? get_rand_frequency() : frequency
 
 	//allocate a channel if necessary now so its the same for everyone
 	channel = channel || SSsounds.random_available_channel()
