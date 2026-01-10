@@ -14,6 +14,7 @@
 	///Healing factor and decay factor function on % of maxhealth, and do not work by applying a static number per tick
 	var/healing_factor 	= 0										//fraction of maxhealth healed per on_life(), set to 0 for generic organs
 	var/decay_factor 	= 0										//same as above but when without a living owner, set to 0 for generic organs
+	var/disable_natural_healing = FALSE							//if TRUE, this organ will not passively heal damage via on_life(); does not affect external/surgical healing.
 	var/high_threshold	= STANDARD_ORGAN_THRESHOLD * 0.45		//when severe organ damage occurs
 	var/low_threshold	= STANDARD_ORGAN_THRESHOLD * 0.1		//when minor organ damage occurs
 
@@ -125,6 +126,8 @@
 	if(organ_flags & ORGAN_FAILING)
 		return
 	if(isnull(owner))
+		return
+	if(disable_natural_healing)
 		return
 	///Damage decrements by a percent of its maxhealth
 	var/healing_amount = -(maxHealth * healing_factor)
