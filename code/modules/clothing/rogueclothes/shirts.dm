@@ -229,30 +229,25 @@
 	l_sleeve_status = SLEEVE_NORMAL
 	boobed = TRUE
 	icon_state = "maiddress"
+	item_state = "maiddress"
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts.dmi'
 	detail_tag = "_detail"
 	detail_color = CLOTHING_BLACK
-
-/obj/item/clothing/suit/roguetown/shirt/dress/maid/lord/Initialize()
-	. = ..()
-	if(GLOB.lordprimary)
-		lordcolor(GLOB.lordprimary,GLOB.lordsecondary)
-	GLOB.lordcolor += src
-
-/obj/item/clothing/suit/roguetown/shirt/dress/maid/lord/Destroy()
-	GLOB.lordcolor -= src
-	return ..()
 
 //................ Servant Gown   ............... //
 /obj/item/clothing/suit/roguetown/shirt/dress/maid/servant
 	name = "servant gown"
 	desc = "A dress worn by those of manors and noble staff. Commonly black, though some estates dye them to their house colors."
 	icon_state = "maidgown"
+	item_state = "maidgown"
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts.dmi'
 	detail_color = CLOTHING_BLACK
 
 /obj/item/clothing/shirt/undershirt/formal
 	name = "formal shirt"
 	desc = "A comfortable yet functional dress shirt often worn by the staff of a noble household."
 	icon_state = "butlershirt"
+	item_state = "butlershirt"
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_maids.dmi'
 //End Servant Clothing
 

@@ -873,6 +873,7 @@
 	detail_color = CLOTHING_BLACK
 	icon_state = "maidapron"
 	item_state = "maidapron"
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/cloaks.dmi'
 	boobed = FALSE
 	grid_width = 64
 	grid_height = 64

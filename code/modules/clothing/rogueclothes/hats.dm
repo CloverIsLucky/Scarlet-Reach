@@ -673,6 +673,8 @@
 	name = "maid headband"
 	desc = "A pleated cloth headband. It has gained widespread popularity from nobles travelling with their servants."
 	icon_state = "maidband"
+	item_state = "maidband"
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/head.dmi'
 	body_parts_covered = NONE
 
 /obj/item/clothing/head/roguetown/crown/fakecrown

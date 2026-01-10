@@ -267,6 +267,7 @@
 	desc = "A formal pair of trousers."
 	icon_state = "butlerpants"
 	item_state = "butlerpants"
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/pants.dmi'
 	detail_tag = "_detail"
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_maids.dmi'
 	salvage_result = /obj/item/natural/cloth
@@ -277,6 +278,7 @@
 	desc = "A pair of formal trouser shorts, fit for any strapping young lad."
 	icon_state = "butlershorts"
 	item_state = "butlershorts"
+	mob_overlay_icon = 'icons/roguetown/clothing/onmob/pants.dmi'
 	detail_color = CLOTHING_BLACK
 
 /obj/item/clothing/under/roguetown/skirt
