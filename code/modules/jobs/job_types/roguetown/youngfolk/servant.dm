@@ -107,7 +107,7 @@
 /datum/outfit/job/servant/maid/pre_equip(mob/living/carbon/human/H)
 	..()
 	head = /obj/item/clothing/head/maidband
-	armor = /obj/item/clothing/shirt/dress/maid/servant
+	armor = /obj/item/clothing/suit/roguetown/shirt/dress/maid/servant
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	cloak = /obj/item/clothing/cloak/apron/maid
 	backl = /obj/item/storage/backpack/rogue/satchel

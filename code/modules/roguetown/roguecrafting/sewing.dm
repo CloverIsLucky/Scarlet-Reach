@@ -1374,7 +1374,7 @@ datum/crafting_recipe/roguetown/sewing/Purdress
 
 /datum/crafting_recipe/roguetown/sewing/servantdress
 	name = "servant dress"
-	result = list(/obj/item/clothing/shirt/dress/maid/servant)
+	result = list(/obj/item/clothing/suit/roguetown/shirt/dress/maid/servant)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/fibers = 2)
 	craftdiff = 3
@@ -1402,7 +1402,7 @@ datum/crafting_recipe/roguetown/sewing/Purdress
 
 /datum/crafting_recipe/roguetown/sewing/maiddress
 	name = "maid dress"
-	result = list(/obj/item/clothing/shirt/dress/maid)
+	result = list(/obj/item/clothing/suit/roguetown/shirt/dress/maid)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/fibers = 2)
 	craftdiff = 4

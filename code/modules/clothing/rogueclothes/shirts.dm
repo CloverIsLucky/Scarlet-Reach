@@ -220,7 +220,7 @@
 
 //Servant Clothing:
 //................ Maid Dress   ............... //
-/obj/item/clothing/shirt/dress/maid
+/obj/item/clothing/suit/roguetown/shirt/dress/maid
 	name = "maid dress"
 	desc = "A dress befitting the housekeeper of a lord's staff. While not as intricate as a royal's, it is indicative of the house's status."
 	body_parts_covered = CHEST|GROIN|ARMS|VITALS
@@ -232,19 +232,18 @@
 	detail_tag = "_detail"
 	detail_color = CLOTHING_BLACK
 
-/obj/item/clothing/shirt/dress/maid/lord
+/obj/item/clothing/suit/roguetown/shirt/dress/maid/lord/Initialize()
 	. = ..()
 	if(GLOB.lordprimary)
 		lordcolor(GLOB.lordprimary,GLOB.lordsecondary)
-	else
-		GLOB.lordcolor += src
+	GLOB.lordcolor += src
 
-/obj/item/clothing/shirt/dress/maid/lord/Destroy()
+/obj/item/clothing/suit/roguetown/shirt/dress/maid/lord/Destroy()
 	GLOB.lordcolor -= src
 	return ..()
 
 //................ Servant Gown   ............... //
-/obj/item/clothing/shirt/dress/maid/servant
+/obj/item/clothing/suit/roguetown/shirt/dress/maid/servant
 	name = "servant gown"
 	desc = "A dress worn by those of manors and noble staff. Commonly black, though some estates dye them to their house colors."
 	icon_state = "maidgown"
